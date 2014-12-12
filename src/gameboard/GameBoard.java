@@ -6,15 +6,68 @@
 
 package gameboard;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Thibaud
  */
-public class GameBoard {
+abstract class GameBoard {
 
-    /**
-     * @param args the command line arguments
-     */
+    final int length;
+    final int width;
+    int[][] xboard;
+    ArrayList<Turn> xhistory;
 
+    public GameBoard(int longu, int largu) {
+        length = longu;
+        width = largu;
+        xboard = new int[length + 1][width + 1];
+        xhistory = new ArrayList<Turn>();
+        initialiser();
+    }
+
+    public GameBoard(int longu, int largu, ArrayList<Turn> history) {
+        length = longu;
+        width = largu;
+        xboard = new int[length + 1][width + 1];
+        xhistory = new ArrayList<Turn>();
+        initialiser();
+        int i, j, x = 0;
+        Turn turn;
+            for (i = 0; i < history.size(); i++) {
+            turn = history.get(x);
+            play(turn);
+            x++;
+        }
+    }
+        //toutes les cases à 0
+    private void initialiser() {
+        int i, j;
+        for (i = 1; i <= length; i++) {
+            for (j = 1; j <= width; j++) {
+                xboard[i][j] = 0;
+            }
+        }
+    }
+
+    abstract void play(Turn turn);
     
+    abstract void cancel();
+    
+    public Turn lastTurn() {
+        Turn t;
+        if (!xhistory.isEmpty()) {
+            t = xhistory.get(xhistory.size() - 1);
+            return t;
+        } else {
+            return null;
+        }
+    }
+
+    abstract Player win();
+    
+    public int[][] board() {
+        return xboard;
+    }
 }
