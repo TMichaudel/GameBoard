@@ -10,6 +10,14 @@ package gameboard;
  *
  * @author Thibaud
  */
-public class Player {
+abstract class Player {
+    final int number;
+    final GameBoard board;
     
+    public Player (int number, GameBoard board){
+        this.board = board;
+        this.number = number;
+    }
+    
+    abstract Turn play();
 }

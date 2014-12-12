@@ -70,4 +70,24 @@ abstract class GameBoard {
     public int[][] board() {
         return xboard;
     }
+    
+     public String toString() {
+        String strPlat;
+        strPlat = "";
+        int i, j;
+        for (i = 1; i <= length; i++) {
+            for (j = 1; j <= width; j++) {
+                if (xboard[j][i] == 0) {
+                    strPlat = strPlat + "◌ ";
+                } else if (xboard[j][i] == 1) {
+                    strPlat = strPlat + "● ";
+
+                } else {
+                    strPlat = strPlat + "○ ";
+                }
+            }
+            strPlat = strPlat + "\n";
+        }
+        return strPlat;
+    }
 }

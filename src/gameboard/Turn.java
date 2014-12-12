@@ -11,5 +11,15 @@ package gameboard;
  * @author Thibaud
  */
 public class Turn {
+    private Position position;
+    private Player player;
     
+    public Turn(Position position, Player player){
+        this.player = player;
+        this.position = position;
+    }
+    
+    public String toString(){
+        return "le joueur " + player.toString() + " a joue " + position.toString();
+    }
 }
