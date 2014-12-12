@@ -23,11 +23,11 @@ public class ConnectFour extends GameBoard {
     };
     
     public ConnectFour(int longu, int largu) {
-        super(longu, largu);
+        super(6, 7);
     }
 
     public ConnectFour(int longu, int largu, List<Turn> history) {
-        super(longu, largu, history);
+        super(6, 7, history);
     }
 
     @Override
@@ -45,4 +45,18 @@ public class ConnectFour extends GameBoard {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+     public String toString() {
+        int[][] board=board();
+        String strPlat;
+        strPlat = "";
+        int i, j;
+        for (i = 1; i <= length; i++) {
+            for (j = 1; j <= width; j++) {
+                strPlat+=Cell.values()[board[i][j]];
+            }
+            strPlat = strPlat + "\n";
+        }
+        return strPlat;
+    }
 }

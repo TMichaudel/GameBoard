@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gameboard;
 
 import java.io.Serializable;
@@ -37,13 +36,15 @@ abstract class GameBoard implements Serializable {
         initialiser();
         int i, j, x = 0;
         Turn turn;
-            for (i = 0; i < history.size(); i++) {
+        for (i = 0; i < history.size(); i++) {
             turn = history.get(x);
             play(turn);
             x++;
         }
     }
-        //toutes les cases à 0
+
+    //toutes les cases à 0
+
     private void initialiser() {
         int i, j;
         for (i = 1; i <= length; i++) {
@@ -54,9 +55,9 @@ abstract class GameBoard implements Serializable {
     }
 
     abstract void play(Turn turn);
-    
+
     abstract void cancel();
-    
+
     public Turn lastTurn() {
         Turn t;
         if (!history.isEmpty()) {
@@ -68,25 +69,18 @@ abstract class GameBoard implements Serializable {
     }
 
     abstract Player win();
-    
+
     public int[][] board() {
         return board;
     }
-    
-     public String toString() {
+
+    public String toString() {
         String strPlat;
         strPlat = "";
         int i, j;
         for (i = 1; i <= length; i++) {
             for (j = 1; j <= width; j++) {
-                if (board[j][i] == 0) {
-                    strPlat = strPlat + "◌ ";
-                } else if (board[j][i] == 1) {
-                    strPlat = strPlat + "● ";
-
-                } else {
-                    strPlat = strPlat + "○ ";
-                }
+                strPlat+=board[i][j];
             }
             strPlat = strPlat + "\n";
         }
