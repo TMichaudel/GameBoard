@@ -22,7 +22,4 @@ public class Turn {
     public String toString(){
         return "le joueur " + player.toString() + " a joue " + position.toString();
     }
-    //test
-    //encore
-    
 }
