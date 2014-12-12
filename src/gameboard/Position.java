@@ -11,5 +11,15 @@ package gameboard;
  * @author Thibaud
  */
 public class Position {
+    int x;
+    int y;
     
+    public Position( int a, int b) {
+        this.x=a;
+        this.y=b;
+    }
+    
+    public String toString() {
+        return "x="+x+"/ny="+y;
+    }
 }
