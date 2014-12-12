@@ -15,7 +15,11 @@ import java.util.List;
 public class ConnectFour extends GameBoard {
     
     public enum Cell {
-    vide, rouge, jaune
+    vide("◌"), rouge("●"), jaune("○");
+    String draw;
+    private Cell(String draw){
+        this.draw=draw;
+    }
     };
     
     public ConnectFour(int longu, int largu) {
