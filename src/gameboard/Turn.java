@@ -6,13 +6,15 @@
 
 package gameboard;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Thibaud
  */
-public class Turn {
-    private Position position;
-    private Player player;
+public class Turn implements Serializable {
+    public Position position;
+    public Player player;
     
     public Turn(Position position, Player player){
         this.player = player;

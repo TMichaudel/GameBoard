@@ -11,8 +11,8 @@ package gameboard;
  * @author Thibaud
  */
 abstract class Player {
-    final int number;
-    final GameBoard board;
+    public final int number;
+    public final GameBoard board;
     
     public Player (int number, GameBoard board){
         this.board = board;

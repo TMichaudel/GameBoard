@@ -12,6 +12,10 @@ package gameboard;
  */
 public class Game {
         public static void main(String[] args) {
-        // TODO code application logic here
-    }
+            //GameBoard board = new GameBoard(5,5);
+            //Player p1 = new Player(1,board);
+            
+        }
+        
+        
 }

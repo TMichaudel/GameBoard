@@ -6,32 +6,34 @@
 
 package gameboard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Thibaud
  */
-abstract class GameBoard {
+abstract class GameBoard implements Serializable {
 
-    final int length;
-    final int width;
-    int[][] xboard;
-    ArrayList<Turn> xhistory;
+    public final int length;
+    public final int width;
+    private int[][] board;
+    private List<Turn> history;
 
     public GameBoard(int longu, int largu) {
         length = longu;
         width = largu;
-        xboard = new int[length + 1][width + 1];
-        xhistory = new ArrayList<Turn>();
+        board = new int[length + 1][width + 1];
+        history = new ArrayList<Turn>();
         initialiser();
     }
 
-    public GameBoard(int longu, int largu, ArrayList<Turn> history) {
+    public GameBoard(int longu, int largu, List<Turn> history) {
         length = longu;
         width = largu;
-        xboard = new int[length + 1][width + 1];
-        xhistory = new ArrayList<Turn>();
+        board = new int[length + 1][width + 1];
+        this.history = new ArrayList<Turn>();
         initialiser();
         int i, j, x = 0;
         Turn turn;
@@ -46,7 +48,7 @@ abstract class GameBoard {
         int i, j;
         for (i = 1; i <= length; i++) {
             for (j = 1; j <= width; j++) {
-                xboard[i][j] = 0;
+                board[i][j] = 0;
             }
         }
     }
@@ -57,8 +59,8 @@ abstract class GameBoard {
     
     public Turn lastTurn() {
         Turn t;
-        if (!xhistory.isEmpty()) {
-            t = xhistory.get(xhistory.size() - 1);
+        if (!history.isEmpty()) {
+            t = history.get(history.size() - 1);
             return t;
         } else {
             return null;
@@ -68,7 +70,7 @@ abstract class GameBoard {
     abstract Player win();
     
     public int[][] board() {
-        return xboard;
+        return board;
     }
     
      public String toString() {
@@ -77,9 +79,9 @@ abstract class GameBoard {
         int i, j;
         for (i = 1; i <= length; i++) {
             for (j = 1; j <= width; j++) {
-                if (xboard[j][i] == 0) {
+                if (board[j][i] == 0) {
                     strPlat = strPlat + "◌ ";
-                } else if (xboard[j][i] == 1) {
+                } else if (board[j][i] == 1) {
                     strPlat = strPlat + "● ";
 
                 } else {
