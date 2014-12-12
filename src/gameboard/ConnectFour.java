@@ -13,7 +13,11 @@ import java.util.List;
  * @author p1310207
  */
 public class ConnectFour extends GameBoard {
-
+    
+    public enum Cell {
+    vide, rouge, jaune
+    };
+    
     public ConnectFour(int longu, int largu) {
         super(longu, largu);
     }
