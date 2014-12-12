@@ -22,4 +22,11 @@ public class Position {
     public String toString() {
         return "x="+x+"/ny="+y;
     }
+    
+    public static Position parse(String str) {
+        String[] coos=str.split(",");
+        int x = Integer.parseInt(coos[0]);
+        int y = Integer.parseInt(coos[1]);
+        return new Position(x,y);
+    }
 }
