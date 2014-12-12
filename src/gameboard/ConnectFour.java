@@ -32,7 +32,8 @@ public class ConnectFour extends GameBoard {
 
     @Override
     void play(Turn turn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.board[turn.position.x][turn.position.y] = turn.player.number;
+        this.history.add(turn);
     }
 
     @Override

@@ -17,8 +17,8 @@ abstract class GameBoard implements Serializable {
 
     public final int length;
     public final int width;
-    private int[][] board;
-    private List<Turn> history;
+    protected int[][] board;
+    protected List<Turn> history;
 
     public GameBoard(int longu, int largu) {
         length = longu;
