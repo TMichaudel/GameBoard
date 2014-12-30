@@ -8,6 +8,8 @@ package gameboard;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +40,11 @@ abstract class GameBoard implements Serializable {
         Turn turn;
         for (i = 0; i < history.size(); i++) {
             turn = history.get(x);
-            play(turn);
+            try {
+                play(turn);
+            } catch (InvalidTurnException ex) {
+                Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
+            }
             x++;
         }
     }
@@ -47,14 +53,14 @@ abstract class GameBoard implements Serializable {
 
     private void initialiser() {
         int i, j;
-        for (i = 1; i <= length; i++) {
-            for (j = 1; j <= width; j++) {
+        for (i = 1; i <= width; i++) {
+            for (j = 1; j <=length ; j++) {
                 board[i][j] = 0;
             }
         }
     }
 
-    abstract void play(Turn turn);
+    abstract void play(Turn turn) throws InvalidTurnException;
 
     abstract void cancel();
 
@@ -78,8 +84,8 @@ abstract class GameBoard implements Serializable {
         String strPlat;
         strPlat = "";
         int i, j;
-        for (i = 1; i <= length; i++) {
-            for (j = 1; j <= width; j++) {
+        for (i = 1; i <= width; i++) {
+            for (j = 1; j <= length; j++) {
                 strPlat+=board[i][j];
             }
             strPlat = strPlat + "\n";
