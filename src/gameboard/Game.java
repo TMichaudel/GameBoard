@@ -15,9 +15,13 @@ import java.util.logging.Logger;
 public class Game {
 
     public static void main(String[] args) {
-            //GameBoard board = new GameBoard(5,5);
-        //Player p1 = new Player(1,board);
-
+     ConnectFour board = new ConnectFour(0,0);
+     Humain P1 = new Humain(1,board);
+     Alea P2 = new Alea(2,board);
+     Player[] players = new Player[2];
+     players[0]=P1;
+     players[1]=P2;
+     play(board,players);
     }
 
     public static void play(GameBoard board, Player[] players) {
@@ -25,6 +29,7 @@ public class Game {
         Turn t;
         boolean validTurn;
         while (board.win() == null) {
+            System.out.println(board.toString());
             validTurn = false;
             while (!validTurn) {
                 try {
@@ -34,7 +39,7 @@ public class Game {
                 } catch (InvalidTurnException ex) {                  
                 }
             }
-            current=current+1 % 2;
+            current=(current+1) % 2;
         }
             System.out.println("Le joueur "+board.win().number+" a gagné");
     }

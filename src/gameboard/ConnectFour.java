@@ -15,7 +15,7 @@ public class ConnectFour extends GameBoard {
 
     public enum Cell {
 
-        vide("◌"), rouge("●"), jaune("○");
+        vide("☺"), rouge("●"), jaune("○");
         String draw;
 
         private Cell(String draw) {
@@ -24,7 +24,7 @@ public class ConnectFour extends GameBoard {
     };
 
     public ConnectFour(int longu, int largu) {
-        super(6, 7);
+        super(7, 6);
     }
 
     public ConnectFour(int longu, int largu, List<Turn> history) {
@@ -37,7 +37,7 @@ public class ConnectFour extends GameBoard {
             throw new InvalidTurnException("Bounds");
         } else if (this.board[turn.position.x][turn.position.y] != 0) {
             throw new InvalidTurnException("Taken");
-        } else if ((turn.position.y != 0) || (turn.position.y - 1 == 0)) {
+        } else if ((turn.position.y != 0) && (board[turn.position.x][turn.position.y - 1] == 0)) {
             throw new InvalidTurnException("Gravite");
         } else {
             this.board[turn.position.x][turn.position.y] = turn.player.number;
@@ -144,9 +144,9 @@ public class ConnectFour extends GameBoard {
         String strPlat;
         strPlat = "";
         int i, j;
-        for (i = 1; i <= width; i++) {
-            for (j = 1; j <= length; j++) {
-                strPlat += Cell.values()[board[i][j]];
+        for (i = 0; i < width; i++) {
+            for (j = 0; j < length; j++) {
+                strPlat += Cell.values()[board[j][width-i-1]].draw+" ";
             }
             strPlat = strPlat + "\n";
         }

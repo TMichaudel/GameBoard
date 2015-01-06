@@ -53,8 +53,8 @@ abstract class GameBoard implements Serializable {
 
     private void initialiser() {
         int i, j;
-        for (i = 1; i <= width; i++) {
-            for (j = 1; j <=length ; j++) {
+        for (i = 0; i < width; i++) {
+            for (j = 0; j <length ; j++) {
                 board[i][j] = 0;
             }
         }
@@ -84,8 +84,8 @@ abstract class GameBoard implements Serializable {
         String strPlat;
         strPlat = "";
         int i, j;
-        for (i = 1; i <= width; i++) {
-            for (j = 1; j <= length; j++) {
+        for (i = 0; i < length; i++) {
+            for (j = 0; j < width; j++) {
                 strPlat+=board[i][j];
             }
             strPlat = strPlat + "\n";
