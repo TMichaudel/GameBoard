@@ -15,20 +15,20 @@ import java.util.logging.Logger;
 public class Game {
 
     public static void main(String[] args) {
-     ConnectFour board = new ConnectFour(0,0);
-     Humain P1 = new Humain(1,board);
-     Alea P2 = new Alea(2,board);
-     Player[] players = new Player[2];
-     players[0]=P1;
-     players[1]=P2;
-     play(board,players);
+        ConnectFour board = new ConnectFour(0, 0);
+        Humain P1 = new Humain(1, board);
+        Alea P2 = new Alea(2, board);
+        Player[] players = new Player[2];
+        players[0] = P1;
+        players[1] = P2;
+        play(board, players);
     }
 
     public static void play(GameBoard board, Player[] players) {
         int current = 0;
         Turn t;
         boolean validTurn;
-        while (board.win() == null) {
+        while ((board.win() == null && board.full() != true)) {
             System.out.println(board.toString());
             validTurn = false;
             while (!validTurn) {
@@ -36,13 +36,17 @@ public class Game {
                     t = players[current].play();
                     board.play(t);
                     validTurn = true;
-                } catch (InvalidTurnException ex) {                  
+                } catch (InvalidTurnException ex) {
                 }
             }
-            current=(current+1) % 2;
+            current = (current + 1) % 2;
         }
-            System.out.println("Le joueur "+board.win().number+" a gagné");
-    }
+        if (board.full() == true) {
+            System.out.println("Egalité");
+        } else {
 
+            System.out.println("Le joueur " + board.win().number + " a gagné");
+        }
+    }
 
 }
