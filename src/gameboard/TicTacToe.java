@@ -34,7 +34,7 @@ public class TicTacToe extends GameBoard {
     
     public enum Cell {
 
-        vide("☺"), rouge("●"), jaune("○");
+        vide("☺"), rouge("✕"), jaune("○");
         String draw;
 
         private Cell(String draw) {
@@ -44,7 +44,7 @@ public class TicTacToe extends GameBoard {
 
     @Override
     void play(Turn turn) throws InvalidTurnException {
-        if ((turn.position.x < 0) || (turn.position.x > this.length) || (turn.position.y < 0) || (turn.position.y > this.width)) {
+        if ((turn.position.x < 0) || (turn.position.x >= this.length) || (turn.position.y < 0) || (turn.position.y >= this.width)) {
             throw new InvalidTurnException("Bounds");
         } else if (this.board[turn.position.x][turn.position.y] != 0) {
             throw new InvalidTurnException("Taken");
@@ -150,7 +150,7 @@ public class TicTacToe extends GameBoard {
         int i, j;
         for (i = 0; i < width; i++) {
             for (j = 0; j < length; j++) {
-                strPlat += ConnectFour.Cell.values()[board[j][width-i-1]].draw+" ";
+                strPlat += TicTacToe.Cell.values()[board[j][width-i-1]].draw+" ";
             }
             strPlat = strPlat + "\n";
         }

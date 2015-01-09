@@ -20,30 +20,21 @@ public class Game {
         Scanner sc = new Scanner(System.in);
         String xx = sc.nextLine();
         int Mode = Integer.parseInt(xx);
-        System.out.println("Choississez l'identitez du Joueur 1 : \n [0] Humain \n [1] Ordinateur \n [2] Chuck Noris");
-        xx = sc.nextLine();
-        int J1 = Integer.parseInt(xx);
-        System.out.println("Choississez l'identitez du Joueur 2 : \n [0] Humain \n [1] Ordinateur \n [2] Chuck Noris");
-        xx = sc.nextLine();
-        int J2 = Integer.parseInt(xx);
-
-        GameBoard board;
+        int J1, J2;
         Player P1;
         Player P2;
+        GameBoard board;
         
-        switch (Mode) {
-            case 0:
-                board = new ConnectFour(0, 0);
-                break;
-            case 1:
-                board = new TicTacToe(0, 0);
-                break;
-            default:
-                board = new ConnectFour(0, 0);
-                break;
-        }
-
-        switch (J1) {
+        if (Mode == 0) {
+            board = new ConnectFour(0, 0);
+            System.out.println("Choississez l'identitez du Joueur 1 : \n [0] Humain \n [1] Ordinateur \n [2] Chuck Noris");
+            xx = sc.nextLine();
+            J1 = Integer.parseInt(xx);
+            System.out.println("Choississez l'identitez du Joueur 2 : \n [0] Humain \n [1] Ordinateur \n [2] Chuck Noris");
+            xx = sc.nextLine();
+            J2 = Integer.parseInt(xx);
+            
+            switch (J1) {
             case 0:
                 P1 = new Humain(1, board);
                 break;
@@ -57,8 +48,8 @@ public class Game {
                 P1 = new Humain(2, board);
                 break;
         }
-        
-                switch (J2) {
+
+        switch (J2) {
             case 0:
                 P2 = new Humain(2, board);
                 break;
@@ -72,7 +63,47 @@ public class Game {
                 P2 = new Humain(2, board);
                 break;
         }
- 
+            
+            
+        } else {
+            board = new TicTacToe(0, 0);
+            System.out.println("Choississez l'identitez du Joueur 1 : \n [0] Humain \n [1] Stupid \n [2] Smart");
+            xx = sc.nextLine();
+            J1 = Integer.parseInt(xx);
+            System.out.println("Choississez l'identitez du Joueur 2 : \n [0] Humain \n [1] Stupid \n [2] Smart");
+            xx = sc.nextLine();
+            J2 = Integer.parseInt(xx);
+            
+            switch (J1) {
+            case 0:
+                P1 = new Humain(1, board);
+                break;
+            case 1:
+                P1 = new Stupid(1, board);
+                break;
+            case 2:
+                P1 = new Smart(1, board);
+                break;
+            default:
+                P1 = new Humain(2, board);
+                break;
+        }
+
+        switch (J2) {
+            case 0:
+                P2 = new Humain(2, board);
+                break;
+            case 1:
+                P2 = new Stupid(2, board);
+                break;
+            case 2:
+                P2 = new Smart(1, board);
+                break;
+            default:
+                P2 = new Humain(2, board);
+                break;
+        }
+        }
 
         Player[] players = new Player[2];
         players[0] = P1;
@@ -97,6 +128,7 @@ public class Game {
             }
             current = (current + 1) % 2;
         }
+        System.out.println(board.toString());
         if (board.full() == true) {
             System.out.println("Egalité");
         } else {

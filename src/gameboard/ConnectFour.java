@@ -33,7 +33,7 @@ public class ConnectFour extends GameBoard {
 
     @Override
     void play(Turn turn) throws InvalidTurnException {
-        if ((turn.position.x < 0) || (turn.position.x > this.length) || (turn.position.y < 0) || (turn.position.y > this.width)) {
+        if ((turn.position.x < 0) || (turn.position.x >= this.length) || (turn.position.y < 0) || (turn.position.y >= this.width)) {
             throw new InvalidTurnException("Bounds");
         } else if (this.board[turn.position.x][turn.position.y] != 0) {
             throw new InvalidTurnException("Taken");
