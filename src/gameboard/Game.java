@@ -37,6 +37,7 @@ public class Game {
                 break;
             case 1:
                 board = new TicTacToe(0, 0);
+                break;
             default:
                 board = new ConnectFour(0, 0);
                 break;
