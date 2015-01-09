@@ -91,6 +91,28 @@ abstract class GameBoard implements Serializable {
         return true;
     }
 
+    //smartBoard vérifie si le coup est dans le plateau, 
+    //      si oui : retourne la valeur de la case
+    //      si non : retourne 0;
+    public int smartBoard(int x, int y) {
+        if ((x < 0) || (x > this.length) || (y < 0) || (y > this.width)) {
+            return 0;
+        } else {
+            return board[x][y];
+        }
+    }
+    
+       //smartBoard vérifie si le coup est dans le plateau, 
+    //      si oui : retourne la valeur de la case
+    //      si non : retourne 1;
+        public int smartBoard2(int x, int y) {
+        if ((x < 0) || (x > this.length) || (y < 0) || (y > this.width)) {
+            return 1;
+        } else {
+            return board[x][y];
+        }
+    }
+
     public String toString() {
         String strPlat;
         strPlat = "";

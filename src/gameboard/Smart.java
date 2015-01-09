@@ -21,38 +21,21 @@ public class Smart extends Stupid {
     @Override
     Turn play() {
         Turn lastT = board.lastTurn();
-        boolean v = false;
         Turn t;
-        int res;
-        for (res=0; res<8;res++){
-            switch (res){
-                case 1: t= new Turn (new Position (lastT.position.x+1,lastT.position.y), this);
-                    break;
-                case 2: t= new Turn (new Position (lastT.position.x-1,lastT.position.y), this);
-                    break;
-                case 3: t= new Turn (new Position (lastT.position.x,lastT.position.y+1), this);
-                    break;
-                case 4: t= new Turn (new Position (lastT.position.x,lastT.position.y-1), this);
-                    break;
-                case 5: t= new Turn (new Position (lastT.position.x-1,lastT.position.y-1), this);
-                    break;
-                case 6: t= new Turn (new Position (lastT.position.x-1,lastT.position.y+1), this);
-                    break;
-                case 7: t= new Turn (new Position (lastT.position.x+1,lastT.position.y-1), this);
-                    break;
-                case 8: t= new Turn (new Position (lastT.position.x+1,lastT.position.y+1), this);
-                    break;
-                default : t = null;
-                    break;
-            }
-            try {
+        int i,j;
+        for (i=-1;i<2;i++){
+            for (j=-1;j<2;j++){
+                t = new Turn (new Position (lastT.position.x+i,lastT.position.y+j),this);
+                try {
                 board.play(t);
                 if (board.win()==this){
-                board.cancel();
-                return t;
+                    board.cancel();
+                    return t;
                 }
+                board.cancel();
             } catch (InvalidTurnException ex) {
-                Logger.getLogger(Smart.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
             }
         }
         return super.play(); 

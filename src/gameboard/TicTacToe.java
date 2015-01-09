@@ -21,17 +21,6 @@ public class TicTacToe extends GameBoard {
         super(3, 3, history);
     }
     
-    //smartBoard vérifie si le coup est dans le plateau, 
-    //      si oui : retourne la valeur de la case
-    //      si non : retourne 0;
-    private int smartBoard(int x, int y) {
-        if ((x < 0) || (x > this.length) || (y < 0) || (y > this.width)) {
-            return 0;
-        } else {
-            return board[x][y];
-        }
-    }
-    
     public enum Cell {
 
         vide("☺"), rouge("✕"), jaune("○");
@@ -58,8 +47,10 @@ public class TicTacToe extends GameBoard {
     @Override
     void cancel() {
         Turn turn = this.lastTurn();
+        if(turn!=null) {
         this.board[turn.position.x][turn.position.y] = 0;
-        history.remove(history.size());
+        history.remove(history.size()-1);
+        }
     }
 
     @Override
@@ -148,7 +139,9 @@ public class TicTacToe extends GameBoard {
         String strPlat;
         strPlat = "";
         int i, j;
+        strPlat+= "  0☺1☺2 \n";
         for (i = 0; i < width; i++) {
+            strPlat +=width-i-1+" ";
             for (j = 0; j < length; j++) {
                 strPlat += TicTacToe.Cell.values()[board[j][width-i-1]].draw+" ";
             }

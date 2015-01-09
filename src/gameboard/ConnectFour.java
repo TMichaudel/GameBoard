@@ -53,13 +53,6 @@ public class ConnectFour extends GameBoard {
         history.remove(history.size());
     }
 
-    private int smartBoard(int x, int y) {
-        if ((x < 0) || (x > this.length) || (y < 0) || (y > this.width)) {
-            return 0;
-        } else {
-            return board[x][y];
-        }
-    }
 
     @Override
     Player win() {
@@ -144,7 +137,9 @@ public class ConnectFour extends GameBoard {
         String strPlat;
         strPlat = "";
         int i, j;
+        strPlat += "  0☺1☺2☺3☺4☺5☺6 \n";
         for (i = 0; i < width; i++) {
+            strPlat +=width-i-1+" ";
             for (j = 0; j < length; j++) {
                 strPlat += Cell.values()[board[j][width-i-1]].draw+" ";
             }
