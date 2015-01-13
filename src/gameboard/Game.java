@@ -82,7 +82,7 @@ public class Game {
                 P1 = new Stupid(1, board);
                 break;
             case 2:
-                P1 = new Smart(1, board);
+                P1 = new Smart(2, board);
                 break;
             default:
                 P1 = new Humain(2, board);
@@ -97,7 +97,7 @@ public class Game {
                 P2 = new Stupid(2, board);
                 break;
             case 2:
-                P2 = new Smart(1, board);
+                P2 = new Smart(2, board);
                 break;
             default:
                 P2 = new Humain(2, board);
